@@ -1,4 +1,4 @@
-import config from "./etc/apiKey.js";
+import config from "./etc/config.js";
 
 const apiKey = config.apiKey;
 

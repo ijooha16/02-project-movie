@@ -1,0 +1,5 @@
+const config = {
+    apiKey : 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MWIyZjliMmQ0OGRhMTA2NTE3MWUwMzU1OWQ3OGVkYyIsIm5iZiI6MTczNjM0MDI3Ny4yNDQsInN1YiI6IjY3N2U3MzM1NDRkNjQ5ZmZhZTdiMGI4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.toCBc4fQg0V2zfy7VZJqgSnQrqF35pPrYzy6cSuJTP8',
+}
+
+export default config;
