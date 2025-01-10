@@ -137,9 +137,10 @@ nav {
             z-index: 2;
 
             .hero_d_title {
+                width: 60%;
                 margin-bottom: 40px;
                 font-size: 92px;
-                line-height: 100%;
+                line-height: 120%;
                 font-weight: 700;
             }
 
