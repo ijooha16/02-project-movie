@@ -43,6 +43,10 @@ body {
             color: rgb(191, 255, 0);
         }
     }
+
+    .hide {
+        display: none;
+    }
 }
 
 nav {
@@ -87,7 +91,7 @@ nav {
     #search_input::placeholder {
         font-size: 14px;
         font-weight: 200;
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 0.6);
     }
 
 }
@@ -160,7 +164,7 @@ nav {
                 color: rgb(232, 255, 163);
             }
 
-            .hero_title_story {
+            /* .hero_title_story {
                 font-size: 16px;
                 font-weight: 700;
                 margin-bottom: 20px;
@@ -171,9 +175,10 @@ nav {
                 border: none;
                 height: 1px;
                 background-color: rgba(255, 255, 255, 0.4);
-            }
+            } */
 
             .hero_d_story {
+                margin-top: 20px;
                 width: 40%;
                 font-size: 16px;
                 font-weight: 400;
@@ -185,8 +190,9 @@ nav {
 
     #movie_list {
         margin: 0;
-        padding: 0;
+        padding-left: 60px;
         box-sizing: border-box;
+        width: 100%;
 
         position: relative;
         overflow: visible;
@@ -195,35 +201,42 @@ nav {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        #movie_list_title {
-            margin: 0;
-            margin-top: 100px;
+        
+        p {
+            margin: 0px 0 20px 0;
             padding: 0;
             box-sizing: border-box;
-            width: 100%;
 
+            top: 70px;
+            position: sticky;
+            z-index: 3;
+    
             font-size: 62px;
             font-weight: 700;
             text-align: center;
-
+    
             color: white;
-
-            position: sticky;
+    
+        }
+        
+        hr {
+            margin: 0 50% 400px 0 ;
+            padding: 0;
+            box-sizing: border-box;
+            height: 1px;
+            width: 50%;
+            
             top: 60px;
+            position: sticky;
+            border: none;
             z-index: 3;
-
-            hr {
-                margin: 0 50% 0 60px;
-                border: none;
-                height: 1px;
-                /* width: 100%; */
-                background-color: rgba(255, 255, 255, 0.4);
-            }
-
-            p {
-                margin: 16px;
-            }
+    
+            font-size: 62px;
+            font-weight: 700;
+            text-align: center;
+    
+            color: white;
+            background-color: rgba(255, 255, 255, 0.4);
         }
 
         #movie_list_content {
@@ -283,6 +296,7 @@ nav {
 
                     color: rgb(191, 255, 0);
                     z-index: inherit;
+                    text-align: left;
                 }
 
                 h3 {
@@ -299,7 +313,7 @@ nav {
     }
 
     footer {
-        margin: 160px 0;
+        margin: 160px 0 120px 0;
         /* width: 100%; */
         box-sizing: border-box;
 
@@ -312,7 +326,7 @@ nav {
         hr {
             margin: 160px;
             height: 1px;
-            width: 100%;
+            width: 94%;
             border: none;
             background-color: rgba(255, 255, 255, 0.4);
         }

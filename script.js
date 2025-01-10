@@ -1,6 +1,7 @@
 import config from "./etc/config.js";
 
 const movieListContent = document.querySelector('#movie_list_content');
+const input = document.querySelector('#search_input');
 
 const apiKey = config.apiKey;
 const options = {
@@ -13,7 +14,7 @@ const options = {
 
 const topRated = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
 
-//api 패치 함수
+//api 패치
 async function getData(url) {
     try {
         const response = await fetch(url, options);
@@ -29,40 +30,11 @@ async function getData(url) {
     }
 }
 
-//원하는 url에서 키값 배열 부르는 함수
-// async function getData(url, target) {
-//     try {
-//         const data = await fetchData(url);
+//(시작화면) 영화 render
+async function renderData(data) {
+    movieListContent.innerHTML = '';
 
-//         return data.map((idx) => idx[target])
-//     } catch (error) {
-//         console.error("Error in titleData:", error);
-//         return null;
-//     }
-
-//     async function fetchData() {
-//         try {
-//             const response = await fetch(url, options);
-//             if (!response.ok) {
-//                 throw new Error("Could not fetch resource");
-//             }
-//             const answer = await response.json();
-//             return answer.results;
-
-//         } catch (error) {
-//             console.error(error);
-//             throw error;
-//         }
-//     }
-// }
-
-// console.log(await getData(topRated,'title'));
-
-
-
-//(시작화면) 영화 정보 가져오기
-const renderData = async function () {
-    const data = await getData(topRated);
+    // const data = await getData(topRated);
 
     data.forEach((movie) => {
         let title = movie.title;
@@ -90,11 +62,8 @@ const renderData = async function () {
     });
 };
 
-//execute
-
-
 // random hero movie
-const heroMovie = async function () {
+async function heroMovie() {
     const data = await getData(topRated);
     const ranIdx = Math.floor(Math.random()*20);
 
@@ -149,7 +118,6 @@ const heroMovie = async function () {
         return '★'.repeat(count);
     }
 
-    console.log(title)
     //제목, 평점, 내용 render
     document.querySelector('.hero_d_title').innerText = title;
     document.querySelector('.hero_d_rate').innerText = rate_star(rate);
@@ -157,8 +125,71 @@ const heroMovie = async function () {
     document.querySelector('#hero').style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${posterImg}')`
 }
 
+//필터링 (검색)
+input.addEventListener('input', async () => {
+    const data = await getData(topRated);
+    const value = document.querySelector('#search_input').value.trim();
+    const filtered = data.filter((movie) => movie.title.toLowerCase().includes(value.toLowerCase()));
+
+console.log(filtered)
+    // 값이 있을 때와 없을 때 처리
+    if (value !== '' && value !== undefined && value) {
+        if (filtered.length === 0) {
+            alert('No result');
+        } else {
+            renderData(filtered);
+        }
+    } else {
+        renderData(data);
+    }
+    console.log(value)
+    console.log(filtered)
+})
+
+
+
+
+
+
+
+
+
 //execute
-//시작화면 뮤비카드
-renderData();
+
+//시작할때 뮤비카드 render
+renderData(await getData(topRated));
 //hero화면 랜덤 뮤비
 heroMovie();
+
+
+
+
+
+//원하는 url에서 키값 배열 부르는 함수
+// async function getData(url, target) {
+//     try {
+//         const data = await fetchData(url);
+
+//         return data.map((idx) => idx[target])
+//     } catch (error) {
+//         console.error("Error in titleData:", error);
+//         return null;
+//     }
+
+//     async function fetchData() {
+//         try {
+//             const response = await fetch(url, options);
+//             if (!response.ok) {
+//                 throw new Error("Could not fetch resource");
+//             }
+//             const answer = await response.json();
+//             return answer.results;
+
+//         } catch (error) {
+//             console.error(error);
+//             throw error;
+//         }
+//     }
+// }
+
+// console.log(await getData(topRated,'title'));
