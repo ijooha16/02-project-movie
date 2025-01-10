@@ -1,65 +1,294 @@
-/* 기본적인 Reset 스타일 */
-* {
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* rgb(191, 255, 0) */
+/* rgb(232, 255, 163) */
+
+
+html, body {
+    font-family: 'Pretendard', serif;
+    scrollbar-width: 0;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    box-sizing: border-box;
+    /* min-height: 2000px; */
+    /* height: calc(200vh + 1000px); */
+
+    /* position: relative; */
+    /* overflow: visible; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
+
+    background-color: black;
+}
+
+nav {
+    margin:0;
+    padding: 80px 60px;
+    box-sizing: border-box;
+    width: 100%;
+
+    position: fixed;
+    z-index: 3;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .nav_overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0.7) 50%, black 100%);
+        z-index: 1;
+    }
+
+    #logo {
+        font-family: 'Source Serif 4', serif;
+        color: rgb(191, 255, 0);
+
+        z-index: inherit;
+
+        #line_1 {
+            margin: 0;
+            padding-left: 4px;
+            letter-spacing: 1px;
+            line-height: 120%;
+            font-size: 16px;
+            font-weight: 400;
+        }
+        
+        #line_2 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: 700;
+        }
+    }
+    
+    #search_input {
+        margin: 0;
+        padding: 0 20px;
+        box-sizing: border-box;
+        width: 200px;
+        height: 40px;
+        z-index: inherit;
+
+        border: 0px solid rgba(0, 0, 0, 0);
+        border-radius: 20px;
+
+        color: white;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    #search_input::placeholder {
+        font-size: 14px;
+        font-weight: 200;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+}
+
+#container {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Body 스타일 */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-  }
-  
-  /* 영화 리스트 컨테이너 */
-  #movie_container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px; /* 영화들 사이 간격 */
-  }
-  
-  /* 개별 영화 카드 */
-  .movie {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 15px;
-    width: 200px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 100vw;
+    position: absolute;
+    overflow: visible;
+
+    display: flex;
+    flex-direction: column;
+
+    #hero {
+        padding: 80px 60px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 840px;
+
+        position: relative;
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        
+        /* img 불러오고 주석처리 */
+        background-image: url('https://film-grab.com/wp-content/uploads/photo-gallery/Barbie_11.jpg?bwg=1699879307');
+        background-position: center;
+        background-size: cover;
+        
+        color: white;
+
+        .hero_overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 840px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%,rgba(0, 0, 0, 0.7) 60%, black 100%);
+            z-index: 1;
+        }
+
+        .hero_info {
+            z-index: 2;
+
+            .hero_d_title {
+                margin-bottom: 40px;
+                font-size: 92px;
+                line-height: 100%;
+                font-weight: 700;
+            }
+
+            .hero_d_rate, .hero_d_genre {
+                font-size: 20px;
+                line-height: 160%;
+                font-weight: 400;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                color: rgb(232, 255, 163);
+            }
+
+            .hero_title_story {
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 20px;
+            }
+            
+            hr {
+                margin: 16px 80% 16px 0;
+                border: none;
+                height: 1px;
+                background-color: rgba(255, 255, 255, 0.4);
+            }
+            
+            .hero_d_story {
+                width: 40%;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 180%;
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
     }
-  
-    /* 영화 제목 */
-    h3 {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #333;
+    
+    #movie_list {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+        position: relative;
+        overflow: visible;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        #movie_list_title {
+            margin: 0;
+            margin-top: 100px;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%;
+            
+            font-size: 62px;
+            font-weight: 700;
+            text-align: center;
+
+            color: white;
+
+            position: sticky;
+            top: 60px;
+            z-index: 3;
+            
+            hr {
+                margin: 0 50% 0 60px;
+                border: none;
+                height: 1px;
+                /* width: 100%; */
+                background-color: rgba(255, 255, 255, 0.4);
+            }
+            
+            p {
+                margin: 16px;
+            }
+        }
+        
+        #movie_list_content {
+            margin: 80px auto;
+            padding: 0;
+            width: 100%;
+            box-sizing: border-box;
+            
+            position: relative;
+            z-index: 1;
+            
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px,400px));
+            gap: 40px;
+            justify-content: center;
+            justify-items: start;
+            
+            .cards {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                width: 400px;
+                height: 200px;
+                padding: 20px;
+
+                z-index: 2;
+                position: relative;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+
+                color: white;
+                background-color: rgba(255, 255, 255, 0.23);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.193);
+                
+
+                background-size: cover;
+                background-position: center;
+
+                .card_overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1;
+
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 30%,rgba(0, 0, 0, 0.7) 50%, rgb(0, 0, 0) 100%);
+                }
+
+                p {
+                    margin: 0;
+                    padding: 0;
+                    margin-bottom: 12px;
+                    font-size: 20px;
+
+                    color: rgb(191, 255, 0);
+                    z-index: inherit;
+                }
+
+                h3 {
+                    margin: 0;
+                    padding: 0;
+                    font-size: 26px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+
+                    z-index: inherit;
+                }
+            }
+        }
     }
-  
-    /* 영화 설명 */
-    p {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 10px;
-      line-height: 1.4;
-    }
-  
-    /* 영화 포스터 이미지 */
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-  }
-  
+}
+
