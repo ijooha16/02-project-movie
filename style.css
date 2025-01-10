@@ -21,6 +21,28 @@ body {
     /* flex-direction: column; */
 
     background-color: black;
+
+    #logo {
+        font-family: 'Source Serif 4', serif;
+        
+        z-index: inherit;
+        
+        .line_1 {
+            margin: 0;
+            letter-spacing: 1px;
+            line-height: 120%;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgb(191, 255, 0);
+        }
+        
+        .line_2 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: 700;
+            color: rgb(191, 255, 0);
+        }
+    }
 }
 
 nav {
@@ -45,28 +67,6 @@ nav {
         height: 100%;
         background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 50%, black 100%);
         z-index: 1;
-    }
-
-    #logo {
-        font-family: 'Source Serif 4', serif;
-        color: rgb(191, 255, 0);
-
-        z-index: inherit;
-
-        #line_1 {
-            margin: 0;
-            padding-left: 4px;
-            letter-spacing: 1px;
-            line-height: 120%;
-            font-size: 16px;
-            font-weight: 400;
-        }
-
-        #line_2 {
-            margin: 0;
-            font-size: 36px;
-            font-weight: 700;
-        }
     }
 
     #search_input {
@@ -122,6 +122,10 @@ nav {
         background-size: cover;
 
         color: white;
+
+        #logo.line_1 {
+            padding-left: 4px;
+        }
 
         .hero_overlay {
             position: absolute;
@@ -290,6 +294,53 @@ nav {
 
                     z-index: inherit;
                 }
+            }
+        }
+    }
+
+    footer {
+        margin: 160px 0;
+        /* width: 100%; */
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        hr {
+            margin: 160px;
+            height: 1px;
+            width: 100%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        #links {
+            margin: 60px 0 10px 0;
+            display: flex;
+            justify-content: center;
+
+            gap: 14px;
+
+            links:hover {
+                cursor: grab;
+            }
+
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+
+            }
+        }
+
+        p {
+            color: white;
+
+            b {
+                color: rgb(191, 255, 0);
             }
         }
     }
