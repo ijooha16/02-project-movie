@@ -74,40 +74,40 @@ async function heroMovie() {
     
     //장르 데이터
     const genreData = {
-        Adventure       :12,
-        Animation       :16,
-        Comedy          :35,
-        Action          :28,
-        Crime           :80,
-        Documentary     :99,
-        Drama           :18,
-        Family          :10751,
-        Fantasy         :14,
-        History         :36,
-        Horror          :27,
-        Music           :10402,
-        Mystery         :9648,
-        Romance         :10749,
-        ScienceFiction :878,
-        TVMovie        :10770,
-        Thriller        :53,
-        War             :10752,
-        Western         :37,
+        12: "Adventure",
+        16: "Animation",
+        35: "Comedy",
+        28: "Action",
+        80: "Crime",
+        99: "Documentary",
+        18: "Drama",
+        10751: "Family",
+        14: "Fantasy",
+        36: "History",
+        27: "Horror",
+        10402: "Music",
+        9648: "Mystery",
+        10749: "Romance",
+        878: "ScienceFiction",
+        10770: "TVMovie",
+        53: "Thriller",
+        10752: "War",
+        37: "Western"
     }
     
-    //장르 이름 매칭, render
-    const genreId = data[ranIdx].genre_ids;
-    const genreRender = function(genre) {
-        let result = '';
+    //장르 이름 매칭
+    const genreIds = data[ranIdx].genre_ids;
+    const genreRender = function() {
+        let result = [];
 
-        for (let i=0; i<genreId.length; i++) {
-            for (let j=0; j<genreId.length; j++) {
-                if (genre[j] === Object.values(genreData)[i]) {
-                    result.push(Object.keys(genreData)[i]);
+        for (let i=0; i<Object.keys(genreData).length; i++) {
+            for (let j=0; j<genreIds.length; j++) {
+                if (String(genreIds[j]) == Object.keys(genreData)[i]) {
+                    result.push(Object.values(genreData)[i]);
                 }
             }
         }
-        document.querySelector('#hero_d_genre').innerText = result.join(' | ');
+        return result.join(' | ');
     }
 
     //투표 별
@@ -123,27 +123,50 @@ async function heroMovie() {
     document.querySelector('.hero_d_rate').innerText = rate_star(rate);
     document.querySelector('.hero_d_story').innerText = story;
     document.querySelector('#hero').style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${posterImg}')`
+    document.querySelector('.hero_d_genre').innerText = genreRender();
+
 }
 
 //필터링 (검색)
 input.addEventListener('input', async () => {
     const data = await getData(topRated);
+    console.log(data)
     const value = document.querySelector('#search_input').value.trim();
     const filtered = data.filter((movie) => movie.title.toLowerCase().includes(value.toLowerCase()));
+    const alert = document.querySelector('.alert');
 
-console.log(filtered)
     // 값이 있을 때와 없을 때 처리
     if (value !== '' && value !== undefined && value) {
         if (filtered.length === 0) {
-            alert('No result');
-        } else {
+            alert.classList.remove('hide');
             renderData(filtered);
+
+            window.scrollTo({
+                top: 1173,
+                left: 0,
+                behavior: 'smooth'
+              });
+
+            } else {
+                alert.classList.add('hide');
+                renderData(filtered);
+
+                window.scrollTo({
+                    top: 1173,
+                    left: 0,
+                    behavior: 'smooth'
+                });
         }
     } else {
+        alert.classList.add('hide');
         renderData(data);
+
+        window.scrollTo({
+            top: 1173,
+            left: 0,
+            behavior: 'smooth'
+          });
     }
-    console.log(value)
-    console.log(filtered)
 })
 
 
@@ -162,6 +185,11 @@ renderData(await getData(topRated));
 heroMovie();
 
 
+
+//현재 스크롤 확인
+window.addEventListener('scroll', () => {
+    console.log('Current Scroll Position:', window.scrollY);
+  });
 
 
 
