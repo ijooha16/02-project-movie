@@ -1,21 +1,22 @@
 import config from "./etc/config.js";
 
-const movieListContent = document.querySelector('#movie_list_content');
-const input = document.querySelector('#search_input');
 
-const apiKey = config.apiKey;
-const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: apiKey,
-    }
-};
-
-const topRated = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
 
 //api 패치
+//call
+const topRated = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
+const popular = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+//logic
 async function getData(url) {
+    const apiKey = config.apiKey;
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: apiKey,
+        }
+    };
+
     try {
         const response = await fetch(url, options);
         if (!response.ok) {
@@ -30,41 +31,52 @@ async function getData(url) {
     }
 }
 
-//(시작화면) 영화 render
-async function renderData(data) {
+
+
+//영화 카드 렌더
+//call
+const movieListContent = document.querySelector('#movie_list_content');
+//logic
+async function renderData(url) {
+    const data = await getData(url);
+
+    //초기화 (for search)
     movieListContent.innerHTML = '';
 
-    // const data = await getData(topRated);
-
+    //순회
     data.forEach((movie) => {
         let title = movie.title;
         let posterImg = movie.backdrop_path;
         let rate = movie.vote_average;
 
+        //평점 별로 바꾸기
         const rate_star = function (rate) {
             let count = Math.floor(rate / 2);
 
             return '★'.repeat(count);
         }
 
+        //영화 카드 삽입
         const movieCard = document.createElement('div');
         movieCard.setAttribute('class', 'cards')
-
-        movieCard.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${posterImg}')`
-
+        movieCard.style.backgroundImage = `url('https://image.tmdb.org/t/p/w1280${posterImg}')`
         movieCard.innerHTML = `
-      <p>${rate_star(rate)}</p>
-      <h3>${title}</h3>
-      <div class="card_overlay"></div>
-      `;
-
+            <p>${rate_star(rate)}</p>
+            <h3>${title}</h3>
+            <div class="card_overlay"></div>
+            `;
         movieListContent.append(movieCard);
     });
 };
+//execute
+renderData(popular);
 
-// random hero movie
+
+
+//hero 영화
+//logic
 async function heroMovie() {
-    const data = await getData(topRated);
+    const data = await getData(popular);
     const ranIdx = Math.floor(Math.random()*20);
 
     //정보
@@ -122,18 +134,24 @@ async function heroMovie() {
     document.querySelector('.hero_d_title').innerText = title;
     document.querySelector('.hero_d_rate').innerText = rate_star(rate);
     document.querySelector('.hero_d_story').innerText = story;
-    document.querySelector('#hero').style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${posterImg}')`
+    document.querySelector('#hero').style.backgroundImage = `url('https://image.tmdb.org/t/p/w1280${posterImg}')`
     document.querySelector('.hero_d_genre').innerText = genreRender();
 
 }
+//execute
+heroMovie();
 
-//필터링 (검색)
+
+
+//검색 (filter)
+//call
+const input = document.querySelector('#search_input');
+const alert = document.querySelector('.alert');
+//logic
 input.addEventListener('input', async () => {
-    const data = await getData(topRated);
-    console.log(data)
-    const value = document.querySelector('#search_input').value.trim();
+    const data = await getData(popular);
+    const value = input.value.trim();
     const filtered = data.filter((movie) => movie.title.toLowerCase().includes(value.toLowerCase()));
-    const alert = document.querySelector('.alert');
 
     // 값이 있을 때와 없을 때 처리
     if (value !== '' && value !== undefined && value) {
@@ -176,13 +194,6 @@ input.addEventListener('input', async () => {
 
 
 
-
-//execute
-
-//시작할때 뮤비카드 render
-renderData(await getData(topRated));
-//hero화면 랜덤 뮤비
-heroMovie();
 
 
 
