@@ -4,7 +4,6 @@ import config from "./etc/config.js";
 
 //api 패치
 //call
-const topRated = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
 const popular = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
 //logic
 async function getData(url) {
@@ -34,11 +33,12 @@ async function getData(url) {
 
 
 //영화 카드 렌더
-//call
-const movieListContent = document.querySelector('#movie_list_content');
 //logic
-async function renderData(url) {
-    const data = await getData(url);
+async function renderData(data) {
+    const movieListContent = document.querySelector('#movie_list_content');
+    // const data = await getData(popular);
+    //error01
+    //안에 삽입, argument 삭제하면 작동 안됨
 
     //초기화 (for search)
     movieListContent.innerHTML = '';
@@ -69,14 +69,17 @@ async function renderData(url) {
     });
 };
 //execute
-renderData(popular);
+// renderData(popular); //second
+//error01
+//위에 넣어 부르고, 밑에서 renderData(popular) 로 호출하면 작동안됨
+renderData(await getData(popular));
 
 
 
 //hero 영화
 //logic
 async function heroMovie() {
-    const data = await getData(popular);
+    const data = await getData(popular); //second
     const ranIdx = Math.floor(Math.random()*20);
 
     //정보
@@ -146,12 +149,12 @@ heroMovie();
 //검색 (filter)
 //call
 const input = document.querySelector('#search_input');
-const alert = document.querySelector('.alert');
 //logic
 input.addEventListener('input', async () => {
     const data = await getData(popular);
-    const value = input.value.trim();
+    const value = input.value.trim()
     const filtered = data.filter((movie) => movie.title.toLowerCase().includes(value.toLowerCase()));
+    const alert = document.querySelector('.alert');
 
     // 값이 있을 때와 없을 때 처리
     if (value !== '' && value !== undefined && value) {
@@ -193,15 +196,10 @@ input.addEventListener('input', async () => {
 
 
 
-
-
-
-
 //현재 스크롤 확인
 window.addEventListener('scroll', () => {
     console.log('Current Scroll Position:', window.scrollY);
   });
-
 
 
 //원하는 url에서 키값 배열 부르는 함수
