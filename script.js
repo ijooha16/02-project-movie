@@ -53,7 +53,7 @@ async function renderData(data) {
         const rate_star = function (rate) {
             let count = Math.floor(rate / 2);
 
-            return '★'.repeat(count);
+            return '★ '.repeat(count).trim();
         }
 
         //영화 카드 삽입
@@ -130,7 +130,7 @@ async function heroMovie() {
     const rate_star = function (rate) {
         let count = Math.floor(rate / 2);
 
-        return '★'.repeat(count);
+        return '★ '.repeat(count).trim();
     }
 
     //제목, 평점, 내용 render
