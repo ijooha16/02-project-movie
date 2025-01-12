@@ -189,6 +189,15 @@ input.addEventListener('input', async () => {
           });
     }
 })
+//focus-in logic
+input.addEventListener('click', async () => {
+            window.scrollTo({
+                top: 1173,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
+    )
 
 
 
