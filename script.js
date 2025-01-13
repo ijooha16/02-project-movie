@@ -36,6 +36,7 @@ async function getData(url) {
 //logic
 async function renderData(data) {
     const movieListContent = document.querySelector('#movie_list_content');
+
     // const data = await getData(popular);
     //error01
     //안에 삽입, argument 삭제하면 작동 안됨
@@ -44,9 +45,9 @@ async function renderData(data) {
     movieListContent.innerHTML = '';
 
     //순회
-    data.forEach((movie) => {
+    data.forEach((movie, idx) => {
         let title = movie.title;
-        let posterImg = movie.backdrop_path;
+        let img = movie.backdrop_path;
         let rate = movie.vote_average;
 
         //평점 별로 바꾸기
@@ -58,13 +59,15 @@ async function renderData(data) {
 
         //영화 카드 삽입
         const movieCard = document.createElement('div');
-        movieCard.setAttribute('class', 'cards')
-        movieCard.style.backgroundImage = `url('https://image.tmdb.org/t/p/w1280${posterImg}')`
+        movieCard.setAttribute('class', 'card')
+        movieCard.setAttribute('id', `card${idx}`)
+        movieCard.style.backgroundImage = `url('https://image.tmdb.org/t/p/w1280${img}')`
         movieCard.innerHTML = `
+            <div class="card_overlay"></div>
             <p>${rate_star(rate)}</p>
             <h3>${title}</h3>
-            <div class="card_overlay"></div>
             `;
+
         movieListContent.append(movieCard);
     });
 };
@@ -73,6 +76,56 @@ async function renderData(data) {
 //error01
 //위에 넣어 부르고, 밑에서 renderData(popular) 로 호출하면 작동안됨
 renderData(await getData(popular));
+
+
+
+//카드 클릭 이벤트
+//call
+const modalContainer = document.querySelector('#modal_container');
+const modalContent = document.querySelector('.modal_content');
+const closeModal = document.querySelector('.close_modal');
+//logic
+async function clickEvent() {
+    const data = await getData(popular);
+    
+    for (let i=0; i<20; i++) {
+        const card = document.querySelector(`#card${i}`);
+        
+        console.log(data)
+        
+        //평점 별로 바꾸기
+        const rate_star = function () {
+            let count = Math.floor(data[i].vote_average / 2);
+
+            return '★ '.repeat(count).trim();
+        }
+
+        card.addEventListener('click', () => {
+            modalContainer.classList.remove('hide');
+            document.body.style.overflow = 'hidden';
+            const d = data[i];
+
+            document.querySelector('.modal_date').innerText = d.release_date;
+            document.querySelector('.modal_title').innerText = d.title;
+            document.querySelector('.modal_overview').innerText = d.overview;
+            document.querySelector('.modal_vote').innerText = rate_star();
+            document.querySelector('.modal_count').innerText = d.vote_count;
+
+            modalContent.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${d.poster_path})`;
+        })
+    }
+}
+//execute
+clickEvent();
+
+
+
+//모달 닫기
+//logic
+closeModal.addEventListener('click', () => {
+    modalContainer.classList.add('hide');
+    document.body.style.overflow = 'auto';
+})
 
 
 
@@ -139,7 +192,6 @@ async function heroMovie() {
     document.querySelector('.hero_d_story').innerText = story;
     document.querySelector('#hero').style.backgroundImage = `url('https://image.tmdb.org/t/p/w1280${posterImg}')`
     document.querySelector('.hero_d_genre').innerText = genreRender();
-
 }
 //execute
 heroMovie();
@@ -198,6 +250,8 @@ input.addEventListener('click', async () => {
             });
         }
     )
+
+
 
 
 
