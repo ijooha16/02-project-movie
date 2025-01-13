@@ -33,10 +33,10 @@ async function getData(url) {
 
 
 //영화 카드 렌더
+//call
+const movieListContent = document.querySelector('#movie_list_content');
 //logic
 async function renderData(data) {
-    const movieListContent = document.querySelector('#movie_list_content');
-
     // const data = await getData(popular);
     //error01
     //안에 삽입, argument 삭제하면 작동 안됨
@@ -79,44 +79,35 @@ renderData(await getData(popular));
 
 
 
-//카드 클릭 이벤트
+//모달 열기
 //call
 const modalContainer = document.querySelector('#modal_container');
 const modalContent = document.querySelector('.modal_content');
 const closeModal = document.querySelector('.close_modal');
 //logic
-async function clickEvent() {
+movieListContent.addEventListener('click', async (card) => {
     const data = await getData(popular);
+    const clickedCard = card.target.closest('.card');
+    const idx = Number(clickedCard.id[4]);
+    const target = data[idx];
     
-    for (let i=0; i<20; i++) {
-        const card = document.querySelector(`#card${i}`);
-        
-        console.log(data)
-        
-        //평점 별로 바꾸기
-        const rate_star = function () {
-            let count = Math.floor(data[i].vote_average / 2);
+    const rate_star = function () {
+        let count = Math.floor(target.vote_average / 2);
 
-            return '★ '.repeat(count).trim();
-        }
-
-        card.addEventListener('click', () => {
-            modalContainer.classList.remove('hide');
-            document.body.style.overflow = 'hidden';
-            const d = data[i];
-
-            document.querySelector('.modal_date').innerText = d.release_date;
-            document.querySelector('.modal_title').innerText = d.title;
-            document.querySelector('.modal_overview').innerText = d.overview;
-            document.querySelector('.modal_vote').innerText = rate_star();
-            document.querySelector('.modal_count').innerText = d.vote_count;
-
-            modalContent.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${d.poster_path})`;
-        })
+        return '★ '.repeat(count).trim();
     }
-}
-//execute
-clickEvent();
+
+    modalContainer.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
+
+    document.querySelector('.modal_date').innerText = target.release_date;
+    document.querySelector('.modal_title').innerText = target.title;
+    document.querySelector('.modal_overview').innerText = target.overview;
+    document.querySelector('.modal_vote').innerText = rate_star();
+    document.querySelector('.modal_count').innerText = target.vote_count;
+
+    modalContent.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${target.poster_path})`;
+});
 
 
 
@@ -250,7 +241,6 @@ input.addEventListener('click', async () => {
             });
         }
     )
-
 
 
 
