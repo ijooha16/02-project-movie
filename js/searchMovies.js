@@ -39,3 +39,5 @@ export async function searchMovies(input, popular, movieListContent) {
         });
     });
 }
+
+export default searchMovies

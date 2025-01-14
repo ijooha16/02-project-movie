@@ -26,3 +26,5 @@ export async function getData(url) {
         throw error;
     }
 }
+
+export default getData

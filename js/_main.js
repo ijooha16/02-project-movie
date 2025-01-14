@@ -1,9 +1,8 @@
-import config from "../etc/config.js";
 import { getData } from './-getData.js';
 import { heroMovie } from './heroMovie.js';
 import { renderData } from "./-renderData.js";
 import { searchMovies } from './searchMovies.js';
-import { openModal, closeModal } from './modals.js';
+import { modals } from './modals.js';
 
 const popular = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
 const movieListContent = document.querySelector('#movie_list_content');
@@ -24,7 +23,6 @@ async function loadMovies() {
 }
 
 searchMovies(input, popular);
-openModal(movieListContent, popular);
-closeModal();
-
+modals.openModal(movieListContent, popular);
+modals.closeModal();
 loadMovies();

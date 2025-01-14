@@ -22,7 +22,7 @@ body {
 
     background-color: black;
 
-    #logo {
+    .logo {
         font-family: 'Source Serif 4', serif;
         
         z-index: inherit;
@@ -42,6 +42,10 @@ body {
             font-weight: 700;
             color: rgb(191, 255, 0);
         }
+    }
+
+    .logo:hover {
+        cursor: pointer;
     }
 
     .hide {
@@ -67,6 +71,10 @@ nav {
     justify-content: space-between;
     align-items: center;
 
+    #nav_logo p:hover {
+        color: white;
+    }
+    
     .nav_overlay {
         position: absolute;
         top: 0;
@@ -261,10 +269,6 @@ nav {
         background-size: cover;
 
         color: white;
-
-        #logo.line_1 {
-            padding-left: 4px;
-        }
 
         .hero_overlay {
             position: absolute;
@@ -473,6 +477,10 @@ nav {
         justify-content: center;
         align-items: center;
         text-align: center;
+
+        #footer_logo p:hover {
+            color: rgb(191, 255, 0);
+        }
 
         hr {
             margin: 160px;

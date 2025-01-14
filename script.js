@@ -18,6 +18,16 @@ window.onload = function() {
 
 
 
+//로고 클릭 이벤트
+//call
+const logo = document.querySelector('.logo')
+//logic
+logo.addEventListener('click', () => {
+    window.onload();
+})
+
+
+
 //api 패치
 //logic
 async function getData(url) {
@@ -270,6 +280,12 @@ input.addEventListener('click', async () => {
 
 
 //원하는 url에서 키값 배열 부르는 함수
+
+
+
+
+
+
 // async function getData(url, target) {
 //     try {
 //         const data = await fetchData(url);
@@ -297,3 +313,81 @@ input.addEventListener('click', async () => {
 // }
 
 // console.log(await getData(topRated,'title'));
+
+
+
+
+
+
+
+//---SEARCH---
+//검색창 이벤트 : 검색창에 영화 타이틀을 검색하면 해당 카드만 보이도록 정렬
+//키워드 해당 데이터로 필터링하는 함수
+const filterSearch = async function () {
+    //더보기 버튼 삭제
+    moreBtn.style.display = 'none';
+  
+    //search data 렌더링하기
+    const searchValue = searchInput.value.trim();
+    let data = await searchMovie(searchValue);
+  
+    //검색 결과 필터링
+    const filteredMovies = data.filter((movie) =>
+      movie.title.includes(searchValue)
+    );
+  
+    //기존 카드 제거
+    movieCardWrap.innerHTML = '';
+    //영화 목록 다시 렌더링
+    renderMovie(filteredMovies);
+  };
+  
+  //검색키워드 해당 url 변경 + 데이터 불러오는 함수
+  const searchMovie = async function (searchValue) {
+    let searchUrl;
+  
+    if (searchValue) {
+      let encodedText = encodeURIComponent(searchValue);
+      searchUrl = `https://api.themoviedb.org/3/search/movie?query=${encodedText}&include_adult=false&language=ko-KR&page=1`;
+    }
+  
+    const searchData = await fetchMovies(searchUrl);
+    return searchData;
+  };
+  
+  //검색 버튼 클릭시 해당 영화 필터링
+  searchBtn.addEventListener('click', async function (event) {
+    const searchValue = searchInput.value.trim();
+    if (searchValue === '') {
+      alert('검색어를 입력해주세요!');
+      return;
+    }
+    //해당 데이터 렌더링
+    await filterSearch(searchValue);
+  
+    //검색창 비우기
+    searchInput.value = '';
+    //메인화면 상단으로 이동
+    window.scrollTo({ top: headerHeight, behavior: 'smooth' });
+  });
+  
+  //enter키 누를시 해당 영화 필터링
+  searchInput.addEventListener('keypress', async function (event) {
+    const searchValue = searchInput.value.trim();
+    if (event.key === 'Enter') {
+      event.preventDefault();
+  
+      if (searchValue === '') {
+        alert('검색어를 입력해주세요!');
+        return;
+      }
+  
+      //해당 데이터 렌더링
+      await filterSearch(searchValue);
+  
+      //검색창 비우기
+      searchInput.value = '';
+      //메인화면 상단으로 이동
+      window.scrollTo({ top: headerHeight, behavior: 'smooth' });
+    }
+  });

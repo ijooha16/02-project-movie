@@ -24,3 +24,5 @@ export async function renderData(data, idx, movieListContent) {
 
     movieListContent.append(movieCard);
 };
+
+export default renderData

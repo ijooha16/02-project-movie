@@ -1,3 +1,5 @@
+
+
 export async function heroMovie(popular) {
     const data = await getData(popular);
     const ranIdx = Math.floor(Math.random() * data.length);
@@ -49,3 +51,5 @@ export async function heroMovie(popular) {
     document.querySelector('#hero').style.backgroundImage = `url('https://image.tmdb.org/t/p/w1280${posterImg}')`;
     document.querySelector('.hero_d_genre').innerText = genreRender();
 }
+
+export default heroMovie
