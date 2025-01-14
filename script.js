@@ -2,9 +2,23 @@ import config from "./etc/config.js";
 
 
 
-//api 패치
-//call
 const popular = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+
+
+
+//재시작 스크롤 리셋
+//logic
+window.onload = function() {
+    setTimeout(() => {
+        window.scrollTo(0,0);
+    }, 10)
+
+    console.log('Window succesfully loaded')
+};
+
+
+
+//api 패치
 //logic
 async function getData(url) {
     const apiKey = config.apiKey;
@@ -250,9 +264,9 @@ input.addEventListener('click', async () => {
 
 
 //현재 스크롤 확인
-window.addEventListener('scroll', () => {
-    console.log('Current Scroll Position:', window.scrollY);
-  });
+// window.addEventListener('scroll', () => {
+//     console.log('Current Scroll Position:', window.scrollY);
+//   });
 
 
 //원하는 url에서 키값 배열 부르는 함수
