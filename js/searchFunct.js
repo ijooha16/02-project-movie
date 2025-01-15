@@ -2,7 +2,7 @@ import datas from './data.js';
 import renderData from './-renderData.js'
 
 
-const addBtn = document.querySelector('.add_btn')
+const moreBtn = document.querySelector('.more_btn')
 
 
 // 검색 (filter)
@@ -12,20 +12,19 @@ async function searchFunct(input, value, filtered, movieListContent) {
 
   if (filtered.length === 0) {
     if (input.value) {
+      moreBtn.classList.remove('hide')
       alert.classList.remove("hide");
       renderData(filtered, movieListContent);
     } else {
-      addBtn.classList.add('hide')
+      moreBtn.classList.remove('hide')
       alert.classList.add("hide");
       filtered = await datas.popular;
     }
   } else {
-    addBtn.classList.add('hide')
+    moreBtn.classList.add('hide')
     alert.classList.add("hide");
     renderData(filtered, movieListContent);
   }
-
-  renderData(filtered, movieListContent);
 
     window.scrollTo({
       top: 1173,

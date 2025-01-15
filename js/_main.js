@@ -3,7 +3,7 @@ import getData from "./-getData.js";
 import heroMovie from "./heroMovie.js";
 import renderData from "./-renderData.js";
 import searchFunct from "./searchFunct.js";
-import { openModal, closeModal } from "./modalOpenClose.js";
+import { openModalFunct, closeModal } from "./modalOpenClose.js";
 
 
 
@@ -38,11 +38,20 @@ logo.addEventListener('click', () => {
 
 //execution
 async function loadMovies() {
+  const data = datas.trend;
   
-  heroMovie(datas.trend);
-  openModal(datas.trend, movieListContent);
+  
+  heroMovie(data);
+  // openModal(datas.trend, movieListContent);
   closeModal();
-  renderData(datas.trend, movieListContent)
+  renderData(data, movieListContent)
+
+  movieListContent.addEventListener("click", (card) => {
+    const clickedCard = card.target.closest(".card");
+    const movie = data.filter((movie) => Number(movie.id) === Number(clickedCard.id))[0];
+    
+    openModalFunct(movie);
+  });
 }
 
 window.onload();
@@ -64,4 +73,15 @@ input.addEventListener('input', async() => {
   console.log(`!!!!!!!!!!!!!!!!!${await searchData}`)
   searchFunct(input, value, filtered, movieListContent);
 
+
+
+
+
+  /////////////////////////////test
+  movieListContent.addEventListener("click", (card) => {
+    const clickedCard = card.target.closest(".card");
+    const movie = filtered.filter((movie) => Number(movie.id) === Number(clickedCard.id))[0];
+    
+    openModalFunct(movie);
+  });
 })
