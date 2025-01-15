@@ -465,6 +465,22 @@ nav {
                 z-index: 2;
             }
         }
+
+        .more_btn {
+            margin-top: 80px;
+            font-size: 26px;
+            font-weight: 400;
+            color: white;
+            text-align: center;
+
+            img {
+                margin-top: 12px;
+                width: 50px;
+                height: 40px;
+                opacity: 0.6;
+                
+            }
+        }
     }
 
     footer {

@@ -1,9 +1,9 @@
-import config from "./etc/config.js";
+import { apiKey } from "./etc/config.js";
 
 
 
-const popular = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
-
+const popularUrl = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+const searchUrl = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MWIyZjliMmQ0OGRhMTA2NTE3MWUwMzU1OWQ3OGVkYyIsIm5iZiI6MTczNjM0MDI3Ny4yNDQsInN1YiI6IjY3N2U3MzM1NDRkNjQ5ZmZhZTdiMGI4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.toCBc4fQg0V2zfy7VZJqgSnQrqF35pPrYzy6cSuJTP8'
 
 
 //재시작 스크롤 리셋
@@ -31,7 +31,6 @@ logo.addEventListener('click', () => {
 //api 패치
 //logic
 async function getData(url) {
-    const apiKey = config.apiKey;
     const options = {
         method: 'GET',
         headers: {
@@ -61,10 +60,6 @@ async function getData(url) {
 const movieListContent = document.querySelector('#movie_list_content');
 //logic
 async function renderData(data) {
-    // const data = await getData(popular);
-    //error01
-    //안에 삽입, argument 삭제하면 작동 안됨
-
     //초기화 (for search)
     movieListContent.innerHTML = '';
 
@@ -96,10 +91,10 @@ async function renderData(data) {
     });
 };
 //execute
-// renderData(popular); //second
+// renderData(popularUrl); //second
 //error01
-//위에 넣어 부르고, 밑에서 renderData(popular) 로 호출하면 작동안됨
-renderData(await getData(popular));
+//위에 넣어 부르고, 밑에서 renderData(popularUrl) 로 호출하면 작동안됨
+renderData(await getData(popularUrl));
 
 
 
@@ -110,7 +105,7 @@ const modalContent = document.querySelector('.modal_content');
 const closeModal = document.querySelector('.close_modal');
 //logic
 movieListContent.addEventListener('click', async (card) => {
-    const data = await getData(popular);
+    const data = await getData(popularUrl);
     const clickedCard = card.target.closest('.card');
     const idx = Number(clickedCard.id[4]);
     const target = data[idx];
@@ -147,7 +142,7 @@ closeModal.addEventListener('click', () => {
 //hero 영화
 //logic
 async function heroMovie() {
-    const data = await getData(popular); //second
+    const data = await getData(popularUrl); //second
     const ranIdx = Math.floor(Math.random()*20);
 
     //정보
@@ -218,7 +213,8 @@ heroMovie();
 const input = document.querySelector('#search_input');
 //logic
 input.addEventListener('input', async () => {
-    const data = await getData(popular);
+    const data = await getData(popularUrl);
+    
     const value = input.value.trim()
     const filtered = data.filter((movie) => movie.title.toLowerCase().includes(value.toLowerCase()));
     const alert = document.querySelector('.alert');
@@ -280,12 +276,6 @@ input.addEventListener('click', async () => {
 
 
 //원하는 url에서 키값 배열 부르는 함수
-
-
-
-
-
-
 // async function getData(url, target) {
 //     try {
 //         const data = await fetchData(url);
@@ -323,71 +313,71 @@ input.addEventListener('click', async () => {
 //---SEARCH---
 //검색창 이벤트 : 검색창에 영화 타이틀을 검색하면 해당 카드만 보이도록 정렬
 //키워드 해당 데이터로 필터링하는 함수
-const filterSearch = async function () {
-    //더보기 버튼 삭제
-    moreBtn.style.display = 'none';
+// const filterSearch = async function () {
+//     //더보기 버튼 삭제
+//     moreBtn.style.display = 'none';
   
-    //search data 렌더링하기
-    const searchValue = searchInput.value.trim();
-    let data = await searchMovie(searchValue);
+//     //search data 렌더링하기
+//     const searchValue = searchInput.value.trim();
+//     let data = await searchMovie(searchValue);
   
-    //검색 결과 필터링
-    const filteredMovies = data.filter((movie) =>
-      movie.title.includes(searchValue)
-    );
+//     //검색 결과 필터링
+//     const filteredMovies = data.filter((movie) =>
+//       movie.title.includes(searchValue)
+//     );
   
-    //기존 카드 제거
-    movieCardWrap.innerHTML = '';
-    //영화 목록 다시 렌더링
-    renderMovie(filteredMovies);
-  };
+//     //기존 카드 제거
+//     movieCardWrap.innerHTML = '';
+//     //영화 목록 다시 렌더링
+//     renderMovie(filteredMovies);
+//   };
   
-  //검색키워드 해당 url 변경 + 데이터 불러오는 함수
-  const searchMovie = async function (searchValue) {
-    let searchUrl;
+//   //검색키워드 해당 url 변경 + 데이터 불러오는 함수
+//   const searchMovie = async function (searchValue) {
+//     let searchUrl;
   
-    if (searchValue) {
-      let encodedText = encodeURIComponent(searchValue);
-      searchUrl = `https://api.themoviedb.org/3/search/movie?query=${encodedText}&include_adult=false&language=ko-KR&page=1`;
-    }
+//     if (searchValue) {
+//       let encodedText = encodeURIComponent(searchValue);
+//       searchUrl = `https://api.themoviedb.org/3/search/movie?query=${encodedText}&include_adult=false&language=ko-KR&page=1`;
+//     }
   
-    const searchData = await fetchMovies(searchUrl);
-    return searchData;
-  };
+//     const searchData = await fetchMovies(searchUrl);
+//     return searchData;
+//   };
   
-  //검색 버튼 클릭시 해당 영화 필터링
-  searchBtn.addEventListener('click', async function (event) {
-    const searchValue = searchInput.value.trim();
-    if (searchValue === '') {
-      alert('검색어를 입력해주세요!');
-      return;
-    }
-    //해당 데이터 렌더링
-    await filterSearch(searchValue);
+//   //검색 버튼 클릭시 해당 영화 필터링
+//   searchBtn.addEventListener('click', async function (event) {
+//     const searchValue = searchInput.value.trim();
+//     if (searchValue === '') {
+//       alert('검색어를 입력해주세요!');
+//       return;
+//     }
+//     //해당 데이터 렌더링
+//     await filterSearch(searchValue);
   
-    //검색창 비우기
-    searchInput.value = '';
-    //메인화면 상단으로 이동
-    window.scrollTo({ top: headerHeight, behavior: 'smooth' });
-  });
+//     //검색창 비우기
+//     searchInput.value = '';
+//     //메인화면 상단으로 이동
+//     window.scrollTo({ top: headerHeight, behavior: 'smooth' });
+//   });
   
-  //enter키 누를시 해당 영화 필터링
-  searchInput.addEventListener('keypress', async function (event) {
-    const searchValue = searchInput.value.trim();
-    if (event.key === 'Enter') {
-      event.preventDefault();
+//   //enter키 누를시 해당 영화 필터링
+//   searchInput.addEventListener('keypress', async function (event) {
+//     const searchValue = searchInput.value.trim();
+//     if (event.key === 'Enter') {
+//       event.preventDefault();
   
-      if (searchValue === '') {
-        alert('검색어를 입력해주세요!');
-        return;
-      }
+//       if (searchValue === '') {
+//         alert('검색어를 입력해주세요!');
+//         return;
+//       }
   
-      //해당 데이터 렌더링
-      await filterSearch(searchValue);
+//       //해당 데이터 렌더링
+//       await filterSearch(searchValue);
   
-      //검색창 비우기
-      searchInput.value = '';
-      //메인화면 상단으로 이동
-      window.scrollTo({ top: headerHeight, behavior: 'smooth' });
-    }
-  });
+//       //검색창 비우기
+//       searchInput.value = '';
+//       //메인화면 상단으로 이동
+//       window.scrollTo({ top: headerHeight, behavior: 'smooth' });
+//     }
+//   });
