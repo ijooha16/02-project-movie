@@ -22,7 +22,7 @@ body {
 
     background-color: black;
 
-    #logo {
+    .logo {
         font-family: 'Source Serif 4', serif;
         
         z-index: inherit;
@@ -44,8 +44,16 @@ body {
         }
     }
 
+    .logo:hover {
+        cursor: pointer;
+    }
+
     .hide {
-        display: none;
+        display: none !important;
+    }
+
+    .overflow {
+        overflow: hidden;
     }
 }
 
@@ -63,6 +71,10 @@ nav {
     justify-content: space-between;
     align-items: center;
 
+    #nav_logo p:hover {
+        color: white;
+    }
+    
     .nav_overlay {
         position: absolute;
         top: 0;
@@ -92,6 +104,137 @@ nav {
         font-size: 14px;
         font-weight: 200;
         color: rgba(255, 255, 255, 0.6);
+    }
+
+}
+
+#modal_container {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: fixed;
+    z-index: 4;
+    
+    background-color: rgba(0, 0, 0, 0.8);
+
+    .modal_content {
+        margin: 0;
+        scrollbar-width: none;
+        height: 900px;
+        max-height: 90%;
+        aspect-ratio: 2 / 3;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        
+        overflow: auto;
+        position: absolute;
+
+        background-position: center;
+        background-size: contain;
+        background-color: white;
+
+        .modal_btn {
+            width: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+            
+            position: sticky;
+            top: 0;
+            z-index: 2;
+
+            display: flex;
+            justify-content: space-between;
+            
+            .like_modal, .close_modal {
+                width: 28px;
+                height: 28px;
+                cursor: pointer;
+                color: white;
+                background: none;
+                border: none;
+                font-size: 22px;
+            }
+
+            .like_modal {
+                background-image: url('./src/icon_heart_empty.png');
+                background-size: cover;
+            }
+            
+            .close_modal {
+                background-image: url('./src/icon_cancel.png');
+                background-size: cover;
+            }
+        }
+        
+        .modal_info {
+            margin-top: 80%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            z-index: 2;
+            text-align: center;
+            
+            color: white;
+
+            .modal_date {
+                margin-bottom: 16px;
+                opacity: 0.6;
+            }
+
+            .modal_title {
+                margin: 0;
+                padding: 0;
+                font-size: 72px;
+                font-weight: 700;
+                line-height: 80%;
+            }
+            
+            .modal_overview {
+                margin: 40px 0;
+                font-weight: 200;
+                line-height: 140%;
+                letter-spacing: 0.6px;
+                opacity: 0.6;
+            }
+        }
+
+        .overlay_container {
+            position: fixed;
+            height: 200%;
+            width: 100%;
+            z-index: 1;
+           
+            .modal_overlay_top {
+                box-sizing: border-box;
+                position: absolute;
+                top: 0;
+                opacity: 0.6;;
+                left: 0;
+                width: 100%;
+                height: 120px;
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+            }
+
+            .modal_overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 50%, black 100%);
+            }
+        }
     }
 
 }
@@ -126,10 +269,6 @@ nav {
         background-size: cover;
 
         color: white;
-
-        #logo.line_1 {
-            padding-left: 4px;
-        }
 
         .hero_overlay {
             position: absolute;
@@ -261,13 +400,14 @@ nav {
             justify-items: start;
 
 
-            .cards {
+            .card {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
                 width: 400px;
                 height: 200px;
                 padding: 20px;
+                overflow: hidden;
 
                 z-index: 2;
                 position: relative;
@@ -277,9 +417,9 @@ nav {
                 justify-content: flex-end;
 
                 color: white;
-                background-color: rgba(255, 255, 255, 0.23);
-                box-shadow: 0 0 10px rgba(255, 255, 255, 0.193);
-
+                border-radius: 0;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+                transition: border-radius 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
 
                 background-size: cover;
                 background-position: center;
@@ -316,6 +456,30 @@ nav {
                     z-index: inherit;
                 }
             }
+
+            .card:hover {
+                border-radius: 20px;
+                box-shadow: 0 0 30px rgba(191, 255, 0, 0.4);
+                cursor: pointer;
+                transform: scale(1.1);
+                z-index: 2;
+            }
+        }
+
+        .more_btn {
+            margin-top: 80px;
+            font-size: 26px;
+            font-weight: 400;
+            color: white;
+            text-align: center;
+
+            img {
+                margin-top: 12px;
+                width: 50px;
+                height: 40px;
+                opacity: 0.6;
+                
+            }
         }
     }
 
@@ -330,6 +494,10 @@ nav {
         align-items: center;
         text-align: center;
 
+        #footer_logo p:hover {
+            color: rgb(191, 255, 0);
+        }
+
         hr {
             margin: 160px;
             height: 1px;
@@ -339,14 +507,14 @@ nav {
         }
 
         #links {
-            margin: 60px 0 10px 0;
+            margin: 60px 0 30px 0;
             display: flex;
             justify-content: center;
 
             gap: 14px;
 
             links:hover {
-                cursor: grab;
+                cursor: pointer;
             }
 
             img {
