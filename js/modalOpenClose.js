@@ -1,6 +1,5 @@
 //모달 열기
 function openModal(data, movieListContent) {
-
   movieListContent.addEventListener("click", async (card) => {
     const modalContainer = document.querySelector("#modal_container");
     const modalContent = document.querySelector(".modal_content");
@@ -20,7 +19,7 @@ function openModal(data, movieListContent) {
     document.querySelector(".modal_title").innerText = movie.title;
     document.querySelector(".modal_overview").innerText = movie.overview;
     document.querySelector(".modal_vote").innerText = rate_star();
-    document.querySelector(".modal_count").innerText = movie.vote_count;
+    document.querySelector(".modal_count").innerText = `${movie.vote_count} people voted`;
 
     modalContent.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${movie.poster_path})`;
   });
