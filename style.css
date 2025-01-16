@@ -87,19 +87,39 @@ nav {
         z-index: 1;
     }
 
-    #search_input {
-        margin: 0;
-        padding: 0 20px;
-        box-sizing: border-box;
-        width: 200px;
-        height: 40px;
-        z-index: inherit;
+    #nav_right {
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        
+        #search_input {
+            margin: 0;
+            padding: 0 20px;
+            box-sizing: border-box;
+            width: 200px;
+            height: 40px;
 
-        border: 0px solid rgba(0, 0, 0, 0);
-        border-radius: 20px;
+            border: 0px solid rgba(0, 0, 0, 0);
+            border-radius: 20px;
 
-        color: white;
-        background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .book_mark_btn {
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            background-image: url('./src/icon_bookMark_main.png');
+            background-size: cover;
+
+            &:hover {
+                background-image: url('./src/icon_bookMark_white.png');
+            }
+        }
     }
 
     #search_input::placeholder {
@@ -129,13 +149,13 @@ nav {
     .modal_content {
         margin: 0;
         scrollbar-width: none;
+        border-radius: 30px;
         height: 900px;
         max-height: 90%;
         aspect-ratio: 2 / 3;
         box-sizing: border-box;
 
-        box-shadow: 0 0 60px rgba(255, 255, 255, 0.2);
-
+        box-shadow: 0 0 30px rgba(191, 255, 0, 0.2);
 
         display: flex;
         flex-direction: column;
@@ -171,8 +191,9 @@ nav {
             }
 
             .like_modal {
-                background-image: url('./src/icon_heart_empty.png');
+                background-image: url('./src/icon_heart_fill.png');
                 background-size: cover;
+                opacity: 0.8;
             }
             
             .close_modal {
@@ -229,11 +250,13 @@ nav {
 
         .overlay_container {
             position: fixed;
-            height: 200%;
-            width: 100%;
+            height: 900px;
+            max-height: 90%;
+            aspect-ratio: 2 / 3;
             z-index: 1;
-           
+            
             .modal_overlay_top {
+                border-radius: 30px;
                 box-sizing: border-box;
                 position: absolute;
                 top: 0;
@@ -241,16 +264,17 @@ nav {
                 left: 0;
                 width: 100%;
                 height: 120px;
-                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+                background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0) 100%);
             }
-
+            
             .modal_overlay {
+                border-radius: 30px;
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 50%, black 100%);
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0.9) 70%, black 90%);
             }
         }
     }

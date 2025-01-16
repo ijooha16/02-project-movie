@@ -76,3 +76,79 @@ input.addEventListener('input', async () => {
   // //모달 열기
   openModal(await filtered, movieListContent)
 });
+
+
+
+//북마크 버튼
+let bookMarkList = [];
+const bookMark = document.querySelector('.like_modal');
+
+//즐겨찾기 추가
+bookMark.addEventListener('click', function () {
+  //북마크 이미지 변경
+  bookMark.style.backgroundImage = "url('./src/icon_heart_empty.png')";
+
+  const element = document.querySelector(".modal_content")
+  const style = window.getComputedStyle(element);
+
+  const modalImg = style.backgroundImage;
+  const modalTitle = document.querySelector(".modal_title").textContent;
+  const modalDate = document.querySelector(".modal_date").textContent;
+  const modalOverview = document.querySelector(".modal_overview").textContent;
+  const modalVote = document.querySelector(".modal_vote").textContent;
+  const modalCount = document.querySelector(".modal_count").textContent;
+
+  //이미지 변환
+  const img = function() {
+    const img = modalImg;
+    let url = img.slice(37,img.length)
+    return `${url}`;
+  }
+
+  //평점 변환
+  const rate = function () {
+    const vote = parseFloat(modalVote.length);
+    let count = Math.floor(vote * 2 + 1);
+    return count;
+  };
+
+  //vote count 변환
+  const count = function() {
+    return parseInt(modalCount, 10)
+  }
+
+  console.log(`${typeof modalCount} type, value is ${modalCount}`)
+
+  if (!bookMarkList.some(movie => movie.title === modalTitle)) {
+    bookMarkList.push({
+      backdrop_path : img(),
+      title : modalTitle,
+      release_date : modalDate,
+      overview : modalOverview,
+      vote_average : rate(),
+      vote_count : count(),
+    })
+  }
+})
+
+
+
+//북마크 확인
+document.querySelector('.book_mark_btn').addEventListener('click', () => {
+  movieListContent.innerHTML = ''
+
+  moreBtn.classList.add('hide')
+  document.querySelector(".alert").classList.add("hide");
+  
+  renderData(bookMarkList, movieListContent);
+  openModal(bookMarkList, movieListContent);
+
+  console.log(bookMarkList)
+  
+  window.scrollTo({
+    top: 1173,
+    left: 0,
+    behavior: "smooth",
+  });
+})
+
