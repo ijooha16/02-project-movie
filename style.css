@@ -22,32 +22,6 @@ body {
 
     background-color: black;
 
-    .logo {
-        font-family: 'Source Serif 4', serif;
-        
-        z-index: inherit;
-        
-        .line_1 {
-            margin: 0;
-            letter-spacing: 1px;
-            line-height: 120%;
-            font-size: 16px;
-            font-weight: 400;
-            color: rgb(191, 255, 0);
-        }
-        
-        .line_2 {
-            margin: 0;
-            font-size: 36px;
-            font-weight: 700;
-            color: rgb(191, 255, 0);
-        }
-    }
-
-    .logo:hover {
-        cursor: pointer;
-    }
-
     .hide {
         display: none !important;
     }
@@ -71,10 +45,38 @@ nav {
     justify-content: space-between;
     align-items: center;
 
-    #nav_logo p:hover {
-        color: white;
+    .logo {
+        font-family: 'Source Serif 4', serif;
+        
+        cursor: pointer;
+        z-index: inherit;
+        transition: color 0.3s;
+        
+        .line_1, .line_2 {
+            margin: 0;
+            letter-spacing: 1px;
+            line-height: 120%;
+            transition: color 0.3s;
+            color: rgb(191, 255, 0);
+        }
+        
+        .line_1 {
+            font-size: 16px;
+            font-weight: 400;
+        }
+        
+        .line_2 {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        &:hover .line_1,
+        &:hover .line_2 {
+            color: white;
+        }
     }
-    
+
+
     .nav_overlay {
         position: absolute;
         top: 0;
@@ -467,17 +469,35 @@ nav {
         }
 
         .more_btn {
+            width: 70px;
+            height: 100px;
             margin-top: 80px;
-            font-size: 26px;
-            font-weight: 400;
             color: white;
-            text-align: center;
+            opacity: 0.6;
+
+            transition: opacity 0.3s ease, font-size 0.3s ease;
+
+            &:hover {
+                cursor: pointer;
+                opacity: 1;
+
+
+                div {
+                    font-size: 32px;
+                }
+            }
+
+            div {
+                font-size: 26px;
+                font-weight: 400;
+                text-align: center;
+
+            }
 
             img {
                 margin-top: 12px;
                 width: 50px;
                 height: 40px;
-                opacity: 0.6;
                 
             }
         }
@@ -494,8 +514,35 @@ nav {
         align-items: center;
         text-align: center;
 
-        #footer_logo p:hover {
-            color: rgb(191, 255, 0);
+        .logo {
+            font-family: 'Source Serif 4', serif;
+            
+            cursor: pointer;
+            z-index: inherit;
+            transition: color 0.3s;
+            
+            .line_1, .line_2 {
+                margin: 0;
+                letter-spacing: 1px;
+                line-height: 120%;
+                transition: color 0.3s;
+                color: white;
+            }
+            
+            .line_1 {
+                font-size: 16px;
+                font-weight: 400;
+            }
+            
+            .line_2 {
+                font-size: 36px;
+                font-weight: 700;
+            }
+    
+            &:hover .line_1,
+            &:hover .line_2 {
+                color: rgb(191, 255, 0);
+            }
         }
 
         hr {
