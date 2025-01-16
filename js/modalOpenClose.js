@@ -22,6 +22,9 @@ function openModal(data, movieListContent) {
     document.querySelector(".modal_count").innerText = `${movie.vote_count} people voted`;
 
     modalContent.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${movie.poster_path})`;
+
+    console.log(clickedCard.id)
+    return clickedCard.id;
   });
 }
 

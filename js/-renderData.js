@@ -7,7 +7,6 @@ function renderData(data, movieListContent) {
     if (
       movie.vote_average && 
       movie.backdrop_path && 
-      movie.poster_path &&
       movie.overview
     ) {
       const rate_star = function () {

@@ -87,19 +87,39 @@ nav {
         z-index: 1;
     }
 
-    #search_input {
-        margin: 0;
-        padding: 0 20px;
-        box-sizing: border-box;
-        width: 200px;
-        height: 40px;
-        z-index: inherit;
+    #nav_right {
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        
+        #search_input {
+            margin: 0;
+            padding: 0 20px;
+            box-sizing: border-box;
+            width: 200px;
+            height: 40px;
 
-        border: 0px solid rgba(0, 0, 0, 0);
-        border-radius: 20px;
+            border: 0px solid rgba(0, 0, 0, 0);
+            border-radius: 20px;
 
-        color: white;
-        background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .book_mark_btn {
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            background-image: url('./src/icon_bookMark_main.png');
+            background-size: cover;
+
+            &:hover {
+                background-image: url('./src/icon_bookMark_white.png');
+            }
+        }
     }
 
     #search_input::placeholder {
@@ -171,8 +191,9 @@ nav {
             }
 
             .like_modal {
-                background-image: url('./src/icon_heart_empty.png');
+                background-image: url('./src/icon_heart_fill.png');
                 background-size: cover;
+                opacity: 0.8;
             }
             
             .close_modal {
