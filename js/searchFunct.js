@@ -1,36 +1,36 @@
-import datas from './data.js';
-import renderData from './-renderData.js'
+import renderData from "./-renderData.js";
 
-
-const moreBtn = document.querySelector('.more_btn')
 
 
 // 검색 (filter)
-async function searchFunct(input, value, filtered, movieListContent) {
-    const alert = document.querySelector(".alert");
-    // 값이 있을 때와 없을 때 처리
-
-  if (filtered.length === 0) {
-    if (input.value) {
-      moreBtn.classList.remove('hide')
+async function searchFunct(input, moreBtn, movieListContent, filtered, dataTrend, page, value) {
+  movieListContent.innerHTML = ''
+  page = 1;
+  
+  const alert = document.querySelector(".alert");
+  
+  // // 값이 있을 때와 없을 때 처리
+  if (value && value !== '') { //값 있을 때
+    if (await filtered.length === 0) { //결과 없음
+      moreBtn.classList.add('hide')
       alert.classList.remove("hide");
-      renderData(filtered, movieListContent);
-    } else {
-      moreBtn.classList.remove('hide')
+      renderData([], movieListContent);
+    } else { //결과 있음
+      moreBtn.classList.add('hide')
       alert.classList.add("hide");
-      filtered = await datas.popular;
+      renderData(await filtered, movieListContent);
     }
-  } else {
-    moreBtn.classList.add('hide')
+  } else { //값 없을 때
+    moreBtn.classList.remove('hide')
     alert.classList.add("hide");
-    renderData(filtered, movieListContent);
+    renderData(await dataTrend, movieListContent);
   }
-
-    window.scrollTo({
-      top: 1173,
-      left: 0,
-      behavior: "smooth",
-    });
+  
+  window.scrollTo({
+    top: 1173,
+    left: 0,
+    behavior: "smooth",
+  });
 
   // focus-in logic
   input.addEventListener("click", async () => {
@@ -41,5 +41,7 @@ async function searchFunct(input, value, filtered, movieListContent) {
     });
   });
 }
+
+
 
 export default searchFunct;
