@@ -80,11 +80,15 @@ input.addEventListener('input', async () => {
 
 
 //북마크 버튼
-let bookMarkList = [];
 const bookMark = document.querySelector('.like_modal');
+let bookMarkList = [];
 
 //즐겨찾기 추가
 bookMark.addEventListener('click', function () {
+  const getBData = JSON.parse(localStorage.getItem('Bookmarked'));
+  
+  //북마크 리셋
+  
   //북마크 이미지 변경
   bookMark.style.backgroundImage = "url('./src/icon_heart_empty.png')";
 
@@ -117,38 +121,48 @@ bookMark.addEventListener('click', function () {
     return parseInt(modalCount, 10)
   }
 
-  console.log(`${typeof modalCount} type, value is ${modalCount}`)
-
-  if (!bookMarkList.some(movie => movie.title === modalTitle)) {
-    bookMarkList.push({
-      backdrop_path : img(),
-      title : modalTitle,
-      release_date : modalDate,
-      overview : modalOverview,
-      vote_average : rate(),
-      vote_count : count(),
-    })
+  if (getBData.some(movie => movie.title === modalTitle)) {
+    alert('This movie is already in bookmark!');
+  } else {
+      bookMarkList.push({
+        backdrop_path : img(),
+        title : modalTitle,
+        release_date : modalDate,
+        overview : modalOverview,
+        vote_average : rate(),
+        vote_count : count(),
+      })
   }
+  localStorage.setItem('Bookmarked', JSON.stringify(bookMarkList))
 })
 
 
 
 //북마크 확인
 document.querySelector('.book_mark_btn').addEventListener('click', () => {
+  const getBData = JSON.parse(localStorage.getItem('Bookmarked'));
+  let arr =[];
+
+  for (let i=0; i<getBData.length; i++) {
+    arr.push(getBData[i])
+  }
+  
   movieListContent.innerHTML = ''
 
   moreBtn.classList.add('hide')
   document.querySelector(".alert").classList.add("hide");
   
-  renderData(bookMarkList, movieListContent);
-  openModal(bookMarkList, movieListContent);
+  renderData(arr, movieListContent);
+  openModal(arr, movieListContent);
 
-  console.log(bookMarkList)
+  console.log(arr)
   
   window.scrollTo({
     top: 1173,
     left: 0,
     behavior: "smooth",
   });
+
+  console.log(getBData)
 })
 
