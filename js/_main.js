@@ -25,10 +25,9 @@ window.onload = async function() {
       window.scrollTo(0,0);
   }, 10)
 
-  //시작화면 영화
-  heroMovie(dataTrend);
-  closeModal();
+  //시작화면 영화, 모달
   renderData(dataTrend, movieListContent);
+  closeModal();
   openModal(dataTrend, movieListContent);
 
   // let page = 1;
@@ -47,6 +46,18 @@ window.onload = async function() {
     window.location.reload();
   });
 };
+
+
+
+//사이트 상단 랜덤 영화 애니메이션
+setTimeout( async() => {
+  setInterval( async() => {
+    const dataTrend = await trendData(1);
+    heroMovie(dataTrend);
+  }, 5000)
+  heroMovie(await trendData(1));
+}, 200);
+
 
 
 
