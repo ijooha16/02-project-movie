@@ -18,7 +18,7 @@ async function fetchData(url) {
       throw new Error("Could not fetch resource");
     }
     const answer = await response.json();
-    // console.log(answer);
+    console.log(answer);
     return answer.results;
   } catch (error) {
     console.error(error);

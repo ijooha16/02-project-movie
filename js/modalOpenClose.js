@@ -25,8 +25,6 @@ function openModal(data, bookMark, movieListContent) {
       return `Released on ${day} ${month} ${year}`
     }
 
-    const img = movie.poster_path || movie.backdrop_path;
-
     modalContainer.classList.remove("hide");
     document.body.style.overflow = "hidden";
 
@@ -44,7 +42,7 @@ function openModal(data, bookMark, movieListContent) {
     document.querySelector(".modal_vote").innerText = rate_star();
     document.querySelector(".modal_count").innerText = `${movie.vote_count} people voted`;
 
-    modalContent.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${img})`;
+    modalContent.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${movie.poster_path})`;
 
     console.log(clickedCard.id)
     return clickedCard.id;

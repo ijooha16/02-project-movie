@@ -84,7 +84,8 @@ input.addEventListener('input', async () => {
 //북마크
 //즐겨찾기 추가
 bookMark.addEventListener('click', async (card) => {
-  bookMarkSave(bookMark, movieListContent);
+  const cardId = card.id;
+  bookMarkSave(cardId, bookMark, movieListContent);
 })
 //북마크 확인
 document.querySelector('.book_mark_btn').addEventListener('click', () => {
