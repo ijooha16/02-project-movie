@@ -2,11 +2,16 @@ import renderData from "./-renderData.js";
 
 
 
+const movieListContent = document.querySelector("#movie_list_content");
+const moreBtn = document.querySelector('.more_btn');
+
+
+
 // 검색 (filter)
-async function searchFunct(input, moreBtn, movieListContent, filtered, dataTrend, page, value) {
+async function searchFunct(input, filtered, dataTrend) {
   movieListContent.innerHTML = ''
-  page = 1;
   
+  const value = input.value.trim();
   const alert = document.querySelector(".alert");
   
   // // 값이 있을 때와 없을 때 처리
