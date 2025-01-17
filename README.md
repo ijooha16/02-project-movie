@@ -57,9 +57,7 @@
 사용성을 고려한 사용자 위주의 페이지를 구현하고자 했습니다.
 
 > **animation**을 활용하여 상단 히로섹션에 시시각각으로 영화 정보가 변경되도록 해 재미를 더했습니다.
-
-<img src="./src/Screenshot _movieList.png">
-
+>
 > - **CSS Grid**를 활용하여 반응형 페이지를 구현했습니다.
 > 
 > - **더보기 버튼**으로 지금 뜨는 영화의 데이터를 전부 확인할 수 있습니다.
@@ -67,12 +65,16 @@
 > - **실시간 검색기능**을 통해 더 효율적인 영화 검색이 가능합니다.
 > 
 > - **window.scrollTo**를 활용해 검색할 때의 사용성을 높였습니다.
-
-<img src="./src/Screenshot _modal.png">
-
 > **다양한 transition**을 적용하여 재미를 더했습니다.
 
+<img src="./src/Screenshot _movieList.png">
 <br/>
+<img src="./src/Screenshot _modal.png">
+
+
+<br/>
+
+<!-- 특징 둘 -->
 
 ### :heavy_check_mark: **TMDB API**
 
@@ -81,6 +83,8 @@ api를 사용하여 데이터를 불러와 실시간으로 데이터가 업데�
 <br/>
 
 ### :heavy_check_mark: **Local Storage**
+
+local storage를 활용한 북마크 기능으로 새로고침 해도 정보가 유지되도록 했습니다.
 
 > - 브라우저 종료 후 다시 접속해도 여전히 좋아요한 영화를 확인할 수 있습니다.
 >
@@ -103,4 +107,10 @@ https://ijooha.tistory.com/
 <br/>
 <br/>
 
-Thanks for visiting **Judie Movie** !
+## :star2: Thanks for visiting **Judie Movie** ! :star2:
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
