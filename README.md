@@ -1,4 +1,4 @@
-# :film_projector:Judie Movie : 영화 검색 페이지
+# :film_projector: Judie Movie : 영화 검색 페이지
 <br/>
 <br/>
 <br/>
