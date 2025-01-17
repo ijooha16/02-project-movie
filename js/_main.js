@@ -30,7 +30,7 @@ window.onload = async function() {
 
   //시작화면 영화, 모달
   renderData(dataTrend, movieListContent);
-  closeModal();
+  // closeModal();
   openModal(dataTrend, bookMark, movieListContent);
 
   //더보기 버튼
@@ -105,5 +105,7 @@ document.querySelector('.book_mark_btn').addEventListener('click', () => {
 
     renderData(arr, movieListContent);
     openModal(arr, bookMark, movieListContent);
-    closeModal();
-})
+  })
+
+  
+  closeModal();
