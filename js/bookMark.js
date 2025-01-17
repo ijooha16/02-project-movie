@@ -83,18 +83,8 @@ async function bookMarkSave(cardId, bookMark, movieListContent) {
 function bookMarkFunct(moreBtn, movieListContent) {
     movieListContent.innerHTML = ''
 
-    // const getBData = JSON.parse(localStorage.getItem('Bookmarked'));
-    // let arr =[];
-
-    // for (let i=0; i<getBData.length; i++) {
-    //     arr.push(getBData[i]);
-    // }
-
     moreBtn.classList.add('hide')
     document.querySelector(".alert").classList.add("hide");
-
-    // renderData(arr, movieListContent);
-    // openModal(arr, bookMark, movieListContent);
 
     window.scrollTo({
         top: 1173,

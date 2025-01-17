@@ -603,6 +603,7 @@ nav {
             margin: 60px 0 30px 0;
             display: flex;
             justify-content: center;
+            transition: transform 0.3s ease;
 
             gap: 14px;
 
@@ -615,6 +616,18 @@ nav {
                 height: 50px;
                 border-radius: 50%;
 
+            }
+
+            #git-hub {
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+
+            #tistory :hover {
+                transform: scale(1.1);
             }
         }
 
