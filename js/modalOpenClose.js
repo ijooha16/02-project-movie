@@ -3,6 +3,7 @@ function openModal(data, bookMark, movieListContent) {
   movieListContent.addEventListener("click", async (card) => {
     const modalContainer = document.querySelector("#modal_container");
     const modalContent = document.querySelector(".modal_content");
+    const local = JSON.parse(localStorage.getItem('Bookmarked')) || [];
 
     const clickedCard = card.target.closest(".card");
     const movie = (await data).filter((movie) => Number(movie.id) === Number(clickedCard.id))[0];
@@ -29,10 +30,11 @@ function openModal(data, bookMark, movieListContent) {
     modalContainer.classList.remove("hide");
     document.body.style.overflow = "hidden";
 
-    if (!movie.bookmark) {
-      bookMark.style.backgroundImage = "url('./src/icon_heart_fill.png')";
+    if (local.some(data => data.title === movie.title)) { //데이터가 이미 있으면
+      bookMark.style.backgroundImage = "url('./src/icon_heart_empty.png')";
+    } else { //새로운 데이터일 때
+        bookMark.style.backgroundImage = "url('./src/icon_heart_fill.png')";
     }
-    bookMark.style.backgroundImage = "url('./src/icon_heart_empty.png')";
 
 
     document.querySelector('.modal_id').innerText = movie.id;

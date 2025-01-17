@@ -28,9 +28,11 @@ async function bookMarkSave(bookMark, movieListContent) {
     //평점 변환
     const rate = function () {
       const vote = parseFloat(modalVote.length);
-      let count = Math.floor(vote * 2 + 1);
+      let count = Math.floor((vote / 2 + 1) * 2);
       return count;
     };
+
+    console.log(rate())
   
     //vote count 변환
     const count = function() {
@@ -93,7 +95,7 @@ function bookMarkFunct(moreBtn, movieListContent) {
     document.querySelector(".alert").classList.add("hide");
 
     renderData(arr, movieListContent);
-    openModal(arr, movieListContent);
+    // openModal(arr, movieListContent);
 
     window.scrollTo({
         top: 1173,
@@ -107,27 +109,3 @@ function bookMarkFunct(moreBtn, movieListContent) {
 
 
 export { bookMarkSave, bookMarkFunct }
-
-
-
-// async function bookMarkSave(data, bookMark, cardId) {
-//     const getBData = JSON.parse(localStorage.getItem('Bookmarked')) || [];
-    
-//     //클릭된 카드만 뽑아져 나온 데이터
-//     const movie = (await data).filter((movie) => Number(movie.id) === Number(cardId))[0];
-  
-//     if (getBData.some(movie => movie.title === movie.title)) { //데이터가 이미 있으면
-//         bookMark.style.backgroundImage = "url('./src/icon_heart_fill.png')";
-//         deleteBookMark(modalTitle);//로컬 데이터에서 삭제
-//     } 
-//     //새로운 데이터일 때
-//     bookMark.style.backgroundImage = "url('./src/icon_heart_empty.png')";
-//     getBData.push(movie)
-    
-//     console.log(movie)
-//     console.log(getBData)
-//     localStorage.setItem('Bookmarked', JSON.stringify(getBData))
-
-//     const movieListContent = document.querySelector('.movie_list_content')
-//     openModal(getBData, movieListContent)
-// }

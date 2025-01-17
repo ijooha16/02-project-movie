@@ -84,17 +84,15 @@ input.addEventListener('input', async () => {
 //북마크
 //즐겨찾기 추가
 bookMark.addEventListener('click', async (card) => {
-  // const modalTitle = document.querySelector(".modal_title").textContent;
-  // const clickedCard = card.target.closest(".card");
-  // const cardId = clickedCard.id
-  // const data = await searchData(modalTitle)//영화제목
-
-  // console.log(clickedCard)
-  
   bookMarkSave(bookMark, movieListContent);
 })
 //북마크 확인
 document.querySelector('.book_mark_btn').addEventListener('click', () => {
+  window.scrollTo({
+    top: 1173,
+    left: 0,
+    behavior: "smooth",
+  });
   bookMarkFunct(moreBtn, movieListContent);
 })
 
