@@ -15,6 +15,7 @@
 
 ## :microphone: Project Introduction
 <br/>
+
 ### :heavy_check_mark: **Development Period**
 2025/01/08 ~ 2025/01/17
 
