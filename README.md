@@ -3,7 +3,9 @@
 <br/>
 <br/>
 
-## :scroll:프로젝트 소개
+<img src="./src/Screenshot _home.png">
+
+## :scroll: 프로젝트 소개
 
 **개발 기간 :** 2025/01/08 ~ 2025/01/17
 ### **Judie Movie**
@@ -15,8 +17,10 @@
 <br/>
 <br/>
 <br/>
+
 ## :magic_wand:프로젝트 특징
-### **바닐라 JavaScript**만 사용하여 만들어진 프로젝트입니다.
+
+### ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)만 사용하여 만들어진 프로젝트입니다.
 ### **UXUI**를 고려한 사용성이 높은 페이지를 구현하고자 했습니다.
 > **CSS Grid**를 활용하여 반응형 페이지를 구현했습니다.
 > **animation**을 활용하여 상단 히로섹션에 시시각각으로 영화 정보가 변경되도록 해 재미를 더했습니다.
