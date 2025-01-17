@@ -95,5 +95,15 @@ document.querySelector('.book_mark_btn').addEventListener('click', () => {
     behavior: "smooth",
   });
   bookMarkFunct(moreBtn, movieListContent);
-})
 
+  const getBData = JSON.parse(localStorage.getItem('Bookmarked'));
+    let arr =[];
+
+    for (let i=0; i<getBData.length; i++) {
+        arr.push(getBData[i]);
+    }
+
+    renderData(arr, movieListContent);
+    openModal(arr, bookMark, movieListContent);
+    closeModal();
+})
