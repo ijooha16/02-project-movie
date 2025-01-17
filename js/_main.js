@@ -13,6 +13,8 @@ const moreBtn = document.querySelector('.more_btn');
 const input = document.querySelector("#search_input");
 const footerLogo = document.querySelector('#footer_logo');
 const nanvLogo = document.querySelector('#nav_logo');
+const bookMark = document.querySelector('.like_modal');
+
 let page = 1;
 
 
@@ -29,13 +31,13 @@ window.onload = async function() {
   //시작화면 영화, 모달
   renderData(dataTrend, movieListContent);
   closeModal();
-  openModal(dataTrend, movieListContent);
+  openModal(dataTrend, bookMark, movieListContent);
 
   //더보기 버튼
   moreBtn.addEventListener('click', async() => {
     page++
     renderData(await trendData(page), movieListContent)
-    openModal(await trendData(page), movieListContent)
+    openModal(await trendData(page), bookMark, movieListContent)
   });
   
   //로고 클릭 이벤트
@@ -74,26 +76,23 @@ input.addEventListener('input', async () => {
   searchFunct(input, filtered, dataTrend);
 
   // //모달 열기
-  openModal(await filtered, movieListContent)
+  openModal(await filtered, bookMark, movieListContent)
 });
 
 
 
 //북마크
-const bookMark = document.querySelector('.like_modal');
 //즐겨찾기 추가
 bookMark.addEventListener('click', async (card) => {
-  // const modalTitle = document.querySelector(".modal_title").textContent;
-  // const clickedCard = card.target.closest(".card");
-  // const cardId = clickedCard.id
-  // const data = await searchData(modalTitle)//영화제목
-
-  // console.log(clickedCard)
-  
   bookMarkSave(bookMark, movieListContent);
 })
 //북마크 확인
 document.querySelector('.book_mark_btn').addEventListener('click', () => {
+  window.scrollTo({
+    top: 1173,
+    left: 0,
+    behavior: "smooth",
+  });
   bookMarkFunct(moreBtn, movieListContent);
 })
 
