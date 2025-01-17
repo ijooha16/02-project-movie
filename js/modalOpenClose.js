@@ -5,6 +5,9 @@ function openModal(data, bookMark, movieListContent) {
     const modalContent = document.querySelector(".modal_content");
     const local = JSON.parse(localStorage.getItem('Bookmarked')) || [];
 
+    console.log(data)
+    
+
     const clickedCard = card.target.closest(".card");
     const movie = (await data).filter((movie) => Number(movie.id) === Number(clickedCard.id))[0];
 
