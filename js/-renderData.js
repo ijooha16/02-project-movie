@@ -23,6 +23,7 @@ function renderData(data, movieListContent) {
       movieCard.setAttribute("class", "card");
       movieCard.style.backgroundImage = `url('https://image.tmdb.org/t/p/w1280${movie.backdrop_path}')`;
       movieCard.innerHTML = `
+        <div class="card_id hide">${movie.id}</div>
         <div class="card_overlay"></div>
         <p>${rate_star()}</p>
         <h3>${movie.title}</h3>

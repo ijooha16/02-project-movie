@@ -4,7 +4,7 @@ import { searchData } from "./-movieData.js";
 
 
 
-async function bookMarkSave(bookMark, movieListContent) {
+async function bookMarkSave(cardId, bookMark, movieListContent) {
     const getBData = JSON.parse(localStorage.getItem('Bookmarked')) || [];
     
     const element = document.querySelector(".modal_content")
@@ -21,10 +21,10 @@ async function bookMarkSave(bookMark, movieListContent) {
     //이미지 변환
     const img = function() {
       const img = modalImg;
-      let url = img.slice(37,img.length)
+      let url = img.slice(37,img.length-2)
       return `${url}`;
     }
-  
+    
     //평점 변환
     const rate = function () {
       const vote = parseFloat(modalVote.length);
@@ -64,6 +64,7 @@ async function bookMarkSave(bookMark, movieListContent) {
             bookmark : true,
             id : modalId,
             backdrop_path : img(),
+            poster_path : img(),
             title : modalTitle,
             release_date : date(),
             overview : modalOverview,
@@ -73,7 +74,7 @@ async function bookMarkSave(bookMark, movieListContent) {
         localStorage.setItem('Bookmarked', JSON.stringify(getBData))
     }
     console.log(getBData)
-    openModal(getBData, bookMark, movieListContent)
+    openModal(cardId, bookMark, movieListContent)
 }
 
 
@@ -95,7 +96,7 @@ function bookMarkFunct(moreBtn, movieListContent) {
     document.querySelector(".alert").classList.add("hide");
 
     renderData(arr, movieListContent);
-    // openModal(arr, movieListContent);
+    openModal(arr, movieListContent);
 
     window.scrollTo({
         top: 1173,
@@ -103,7 +104,7 @@ function bookMarkFunct(moreBtn, movieListContent) {
         behavior: "smooth",
     });
 
-    console.log(getBData)
+    console.log(getBData)  
 }
 
 
