@@ -52,10 +52,14 @@ async function bookMarkSave(bookMark, movieListContent) {
 
     if (getBData.some(movie => movie.title === modalTitle)) { //데이터가 이미 있으면
         bookMark.style.backgroundImage = "url('./src/icon_heart_fill.png')";
-        deleteBookMark(modalTitle);//로컬 데이터에서 삭제
+        const updatedData = getBData.filter(movie => {
+            return movie.title !== modalTitle;
+        });
+        localStorage.setItem('Bookmarked', JSON.stringify(updatedData))
     } else { //새로운 데이터일 때
         bookMark.style.backgroundImage = "url('./src/icon_heart_empty.png')";
         getBData.push({
+            bookmark : true,
             id : modalId,
             backdrop_path : img(),
             title : modalTitle,
@@ -64,10 +68,10 @@ async function bookMarkSave(bookMark, movieListContent) {
             vote_average : rate(),
             vote_count : count(),
         })
+        localStorage.setItem('Bookmarked', JSON.stringify(getBData))
     }
     console.log(getBData)
-    localStorage.setItem('Bookmarked', JSON.stringify(getBData))
-    openModal(getBData, movieListContent)
+    openModal(getBData, bookMark, movieListContent)
 }
 
 

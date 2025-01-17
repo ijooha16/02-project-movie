@@ -1,5 +1,5 @@
 //모달 열기
-function openModal(data, movieListContent) {
+function openModal(data, bookMark, movieListContent) {
   movieListContent.addEventListener("click", async (card) => {
     const modalContainer = document.querySelector("#modal_container");
     const modalContent = document.querySelector(".modal_content");
@@ -28,6 +28,12 @@ function openModal(data, movieListContent) {
 
     modalContainer.classList.remove("hide");
     document.body.style.overflow = "hidden";
+
+    if (!movie.bookmark) {
+      bookMark.style.backgroundImage = "url('./src/icon_heart_fill.png')";
+    }
+    bookMark.style.backgroundImage = "url('./src/icon_heart_empty.png')";
+
 
     document.querySelector('.modal_id').innerText = movie.id;
     document.querySelector(".modal_date").innerText = date();
