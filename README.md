@@ -1,5 +1,4 @@
 # :film_projector:Judie Movie : 영화 검색 페이지
-- **배포 주소** : https://arendt9797.github.io/Movie-Seacrh/
 <br/>
 <br/>
 <br/>
