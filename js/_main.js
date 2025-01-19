@@ -28,7 +28,7 @@ window.onload = async function() {
       window.scrollTo(0,0);
   }, 10)
 
-  //시작화면 영화, 모달
+  //시작화면 영화
   renderData(dataTrend, movieListContent);
 
   //더보기 버튼
@@ -44,6 +44,10 @@ window.onload = async function() {
   nanvLogo.addEventListener('click', () => {
     window.location.reload();
   });
+
+  //모달
+  closeModal();
+openModal(bookMark, movieListContent)
 };
 
 
@@ -99,6 +103,3 @@ document.querySelector('.book_mark_btn').addEventListener('click', () => {
 
     renderData(arr, movieListContent);
   })
-  
-  closeModal();
-openModal(bookMark, movieListContent)
