@@ -28,16 +28,13 @@ window.onload = async function() {
       window.scrollTo(0,0);
   }, 10)
 
-  //시작화면 영화, 모달
+  //시작화면 영화
   renderData(dataTrend, movieListContent);
-  // closeModal();
-  openModal(dataTrend, bookMark, movieListContent);
 
   //더보기 버튼
   moreBtn.addEventListener('click', async() => {
     page++
     renderData(await trendData(page), movieListContent)
-    openModal(await trendData(page), bookMark, movieListContent)
   });
   
   //로고 클릭 이벤트
@@ -47,6 +44,10 @@ window.onload = async function() {
   nanvLogo.addEventListener('click', () => {
     window.location.reload();
   });
+
+  //모달
+  closeModal();
+  openModal(bookMark, movieListContent)
 };
 
 
@@ -74,9 +75,6 @@ input.addEventListener('input', async () => {
   const dataTrend = await trendData(1)
   
   searchFunct(input, filtered, dataTrend);
-
-  // //모달 열기
-  openModal(await filtered, bookMark, movieListContent)
 });
 
 
@@ -104,8 +102,4 @@ document.querySelector('.book_mark_btn').addEventListener('click', () => {
     }
 
     renderData(arr, movieListContent);
-    openModal(arr, bookMark, movieListContent);
   })
-
-  
-  closeModal();
