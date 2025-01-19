@@ -116,9 +116,11 @@ nav {
             border: none;
             background-image: url('./src/icon_bookMark_main.png');
             background-size: cover;
+            transition: background-image 0.5s ease, transform 0.5s ease;
 
             &:hover {
                 background-image: url('./src/icon_bookMark_white.png');
+                transform: scale(1.1);
             }
         }
     }
@@ -604,18 +606,22 @@ nav {
             display: flex;
             justify-content: center;
             transition: transform 0.3s ease;
+            cursor: pointer;
 
             gap: 14px;
-
-            links:hover {
-                cursor: pointer;
-            }
 
             img {
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
+            }
 
+            #git-hub :hover{
+                transform: scale(1.1);
+            }
+
+            #tistory :hover {
+                transform: scale(1.1);
             }
 
             #git-hub {

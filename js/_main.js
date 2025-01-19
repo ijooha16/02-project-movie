@@ -47,7 +47,7 @@ window.onload = async function() {
 
   //모달
   closeModal();
-openModal(bookMark, movieListContent)
+  openModal(bookMark, movieListContent)
 };
 
 
