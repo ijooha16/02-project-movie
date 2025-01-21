@@ -1,4 +1,4 @@
-import renderData from "./-renderData.js";
+import renderData from "./renderData.js";
 
 
 

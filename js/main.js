@@ -1,6 +1,6 @@
-import { trendData, popularData, searchData } from "./-movieData.js";
+import { trendData, popularData, searchData } from "./movieData.js";
 import heroMovie from "./heroMovie.js";
-import renderData from "./-renderData.js";
+import renderData from "./renderData.js";
 import searchFunct from "./searchFunct.js";
 import { openModal, closeModal } from "./modalOpenClose.js";
 import { bookMarkSave, bookMarkFunct } from './bookMark.js';
@@ -22,6 +22,8 @@ let page = 1;
 //시작 execution
 window.onload = async function() {
   const dataTrend = await trendData(1)
+  
+  document.querySelector('#movie_list_text').innerText = 'Movie List'
   
   //스크롤 리셋
   setTimeout(() => {
@@ -89,6 +91,8 @@ bookMark.addEventListener('click', async (card) => {
 })
 //북마크 확인
 document.querySelector('.book_mark_btn').addEventListener('click', () => {
+  document.querySelector('#movie_list_text').innerText = 'Bookmark'
+  
   window.scrollTo({
     top: 1173,
     left: 0,

@@ -1,11 +1,11 @@
-import renderData from "./-renderData.js";
+import renderData from "./renderData.js";
 import { openModal, closeModal } from "./modalOpenClose.js";
-import { searchData } from "./-movieData.js";
+import { searchData } from "./movieData.js";
 
 
 
 async function bookMarkSave(cardId, bookMark, movieListContent) {
-    const getBData = JSON.parse(localStorage.getItem('Bookmarked')) || [];
+    const getBData = JSON.parse(localStorage.getItem('Bookmarked')) || document.querySelector('.alert').classList.remove('hide');
     
     const element = document.querySelector(".modal_content")
     const style = window.getComputedStyle(element);
@@ -58,6 +58,13 @@ async function bookMarkSave(cardId, bookMark, movieListContent) {
             return movie.title !== modalTitle;
         });
         localStorage.setItem('Bookmarked', JSON.stringify(updatedData))
+
+        if (document.querySelector('#movie_list_text').textContent === 'Bookmark') {
+            console.log(`updated data ====> ${updatedData}`)
+            movieListContent.innerHTML = ''
+            renderData(updatedData,movieListContent)
+        }
+
     } else { //새로운 데이터일 때
         bookMark.style.backgroundImage = "url('./src/icon_heart_empty.png')";
         getBData.push({
