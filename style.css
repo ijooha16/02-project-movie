@@ -114,12 +114,12 @@ nav {
             cursor: pointer;
             background-color: transparent;
             border: none;
-            background-image: url('./src/icon_bookMark_main.png');
+            background-image: url('./assets/icon_bookMark_main.png');
             background-size: cover;
             transition: background-image 0.5s ease, transform 0.5s ease;
 
             &:hover {
-                background-image: url('./src/icon_bookMark_white.png');
+                background-image: url('./assets/icon_bookMark_white.png');
                 transform: scale(1.1);
             }
         }
@@ -194,13 +194,13 @@ nav {
             }
 
             .like_modal {
-                background-image: url('./src/icon_heart_fill.png');
+                background-image: url('./assets/icon_heart_fill.png');
                 background-size: cover;
                 opacity: 0.8;
             }
             
             .close_modal {
-                background-image: url('./src/icon_cancel.png');
+                background-image: url('./assets/icon_cancel.png');
                 background-size: cover;
             }
         }

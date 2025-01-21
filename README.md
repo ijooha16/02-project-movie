@@ -8,7 +8,7 @@
 모달을 통해 개봉일자, 내용 및 평점 확인이 가능합니다.
 <br/>
 
-<img src="./src/Screenshot _home.png">
+<img src="./assets/Screenshot _home.png">
 
 <br/>
 <br/>
@@ -70,9 +70,9 @@
 > - **window.scrollTo**를 활용해 검색할 때의 사용성을 높였습니다.
 > **다양한 transition**을 적용하여 재미를 더했습니다.
 
-<img src="./src/Screenshot _movieList.png">
+<img src="./assets/Screenshot _movieList.png">
 <br/>
-<img src="./src/Screenshot _modal.png">
+<img src="./assets/Screenshot _modal.png">
 
 
 <br/>

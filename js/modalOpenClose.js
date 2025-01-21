@@ -32,9 +32,9 @@ function openModal(data, bookMark, movieListContent) {
     document.body.style.overflow = "hidden";
 
     if (local.some(data => data.title === movie.title)) { //데이터가 이미 있으면
-      bookMark.style.backgroundImage = "url('./src/icon_heart_empty.png')";
+      bookMark.style.backgroundImage = "url('./assets/icon_heart_empty.png')";
     } else { //새로운 데이터일 때
-        bookMark.style.backgroundImage = "url('./src/icon_heart_fill.png')";
+        bookMark.style.backgroundImage = "url('./assets/icon_heart_fill.png')";
     }
 
 
