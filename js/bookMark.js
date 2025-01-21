@@ -92,12 +92,6 @@ function bookMarkFunct(moreBtn, movieListContent) {
 
     moreBtn.classList.add('hide')
     document.querySelector(".alert").classList.add("hide");
-
-    window.scrollTo({
-        top: 1173,
-        left: 0,
-        behavior: "smooth",
-    });
 }
 
 

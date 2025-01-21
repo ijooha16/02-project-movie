@@ -1,7 +1,10 @@
 <!-- ####### 헤더 -->
 
 # :movie_camera: Judie Movie : Movie Search Page
+https://ijooha16.github.io/Judie-Movie/
+
 <br/>
+
 다양한 영화를 검색하고, 관심있는 영화를 북마크에 저장해 확인할 수 있는 사이트입니다.
 
 지금 가장 뜨고있는 영화들을 실시간으로 확인할 수 있고,
