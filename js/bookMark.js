@@ -5,7 +5,9 @@ import { searchData } from "./movieData.js";
 
 
 async function bookMarkSave(cardId, bookMark, movieListContent) {
-    const getBData = JSON.parse(localStorage.getItem('Bookmarked')) || document.querySelector('.alert').classList.remove('hide');
+    const getBData = JSON.parse(localStorage.getItem('Bookmarked')) || [];
+
+    // if (getBData)
     
     const element = document.querySelector(".modal_content")
     const style = window.getComputedStyle(element);
@@ -51,6 +53,8 @@ async function bookMarkSave(cardId, bookMark, movieListContent) {
 
         return `${year}-${month}-${day}`
     }
+
+    console.log(getBData)
 
     if (getBData.some(movie => movie.title === modalTitle)) { //데이터가 이미 있으면
         bookMark.style.backgroundImage = "url('./assets/icon_heart_fill.png')";
