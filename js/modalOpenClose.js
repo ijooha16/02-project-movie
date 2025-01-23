@@ -9,7 +9,7 @@ function openModal(data, bookMark, movieListContent) {
     
 
     const clickedCard = card.target.closest(".card");
-    const movie = (await data).filter((movie) => Number(movie.id) === Number(clickedCard.id))[0];
+    const movie = (await data).filter((movie) => Number(movie.id) === Number(clickedCard.id))[0] || [];
 
     const rate_star = function () {
       let count = Math.floor(movie.vote_average / 2);
