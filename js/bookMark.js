@@ -7,7 +7,9 @@ import { searchData } from "./movieData.js";
 async function bookMarkSave(cardId, bookMark, movieListContent) {
     const getBData = JSON.parse(localStorage.getItem('Bookmarked')) || [];
 
-    // if (getBData)
+    if (getBData == []) {
+        document.querySelector('.alert').classList.remove('hide');
+    }
     
     const element = document.querySelector(".modal_content")
     const style = window.getComputedStyle(element);
